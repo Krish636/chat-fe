@@ -1,0 +1,53 @@
+<div class="w3-row w3-margin">
+  <div class="w3-col m4 l3">
+    <mat-form-field class="form-input">
+      <mat-label>Add user</mat-label>
+      <input matInput placeholder="Ex. Eva" [formControl]="userFormControl" />
+    </mat-form-field>
+    <button mat-raised-button class="w3-black" (click)="addUser()">
+      Add user
+    </button>
+    <mat-list role="list">
+      <mat-list-item
+        role="listitem"
+        class="w3-light-grey w3-hover-white w3-card"
+        *ngFor="let user of users"
+        (click)="chat(user)"
+      >
+        {{ user }}</mat-list-item
+      >
+    </mat-list>
+  </div>
+  <div class="w3-col m8 l9 w3-padding">
+    <h3>Hi {{ currentUser }}</h3>
+    <h3 *ngIf="incomingMessage">new message : {{ incomingMessage }}</h3>
+    <div class="w3-light-grey">
+      <div class="align-left w3-card w3-padding w3-margin-right">
+        <p>
+          <b>{{ chatWith }} :</b>
+        </p>
+        <p>Hi, How are you.?</p>
+      </div>
+      <div
+        class="align-right w3-card w3-padding w3-margin-left"
+        *ngIf="message"
+      >
+        <p><b>You :</b></p>
+        <p>{{ message }}</p>
+      </div>
+    </div>
+    <div class="w3-margin">
+      <mat-form-field class="form-input" style="margin-top: 100px">
+        <mat-label>Your message</mat-label>
+        <textarea
+          matInput
+          placeholder="start typing...."
+          [formControl]="messageFormControl"
+        ></textarea>
+      </mat-form-field>
+      <button mat-raised-button class="w3-black" (click)="sendMessage()">
+        Send
+      </button>
+    </div>
+  </div>
+</div>
